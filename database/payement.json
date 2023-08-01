@@ -1,0 +1,11 @@
+{
+    "paypal" :{
+        "link" :"a",
+        "email" : "a"
+    },
+    "crypto" : {
+        "eth" : "a",
+        "ltc" :"a",
+        "btc" : "a"
+    }
+}

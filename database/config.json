@@ -1,0 +1,8 @@
+{
+    "token" : "MTAzNDgxODY4NjcwNTQ3OTY5MA.Giv6ne.nf_ub5E1FBveQk-A456_n0RREIv_VezjHBMqwQ",
+    "client_secret" : "",
+    "client_id" : "",
+    "redirect" :"http://localhost:8080",
+    "API_ENDPOINT" :  "https://canary.discord.com/api/v9"
+
+}
