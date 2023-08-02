@@ -37,7 +37,8 @@ class payement(commands.Cog):
                         try:
                             reaction, user = await self.client.wait_for("reaction_add")
                             if str(reaction.emoji) == "📱":
-                                if  check(id = reaction.message.id, message =  message_ppl.id) is True :
+                                if check(id = reaction.message.id, message =  message_ppl.id) is True :
+                                    print("a")
                                     await user.send(f"{importdata.tableau(chemin='database/', filename='payement', name_list='paypal', name='link' )}")
                                     await user.send(f"{importdata.tableau(chemin='database/', filename='payement', name_list='paypal', name='email' )}")
                                 else : 
