@@ -11,10 +11,7 @@
 
 <h2>Donate 🪙<h2>
 
-<ul>
-    <li>paypal : https://paypal.me/nimouhq<li>
-    <li>ltc : LZM6vquSUfn1gX3AmPSNjqXob3aGEjb3Bt<li>
-    <li>eth : 0xf73366828745aB8E2e928cF398730b920809D79A<li>
-    <li>btc : bc1q5ffk7fnddynu6yju0s3cdvgdk92wyvhwsw4yk6<li>
-
-<ul>
+<p> > paypal : https://paypal.me/nimouhq </p>
+<p>> ltc : LZM6vquSUfn1gX3AmPSNjqXob3aGEjb3Bt</p>
+<p>> eth : 0xf73366828745aB8E2e928cF398730b920809D79A</p>
+<p>> btc : bc1q5ffk7fnddynu6yju0s3cdvgdk92wyvhwsw4yk6</p>
