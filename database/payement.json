@@ -1,11 +1,11 @@
 {
     "paypal" :{
-        "link" :"a",
-        "email" : "a"
+        "link" :"no-value",
+        "email" : "no-value"
     },
     "crypto" : {
-        "eth" : "a",
-        "ltc" :"a",
-        "btc" : "a"
+        "eth" : "no-value",
+        "ltc" :"no-value",
+        "btc" : "no-value"
     }
 }
