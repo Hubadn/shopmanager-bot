@@ -86,31 +86,98 @@ class backup(commands.Cog):
 
 
             await ctx.send("backup server create with succes")
+        if type == "server" and action == "load": 
+                channels = ctx.guild.channels
+
+                for channel in channels :
+                    await channel.delete()
+                
+                with open('database/backup.json', 'r') as file_json:
+                    file = json.load(file_json)    
+                
+                for channel_text in file[name]["channel_without_category_texte"] : 
+
+                    await ctx.guild.create_text_channel(channel_text)
+
+                for channel_voice in file[name]["channel_without_category_voc"]:
+
+                    await ctx.guild.create_voice_channel(channel_voice)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if type == "server" and action == "list" :
 
             server_list = ""
 
             with open('database/backup.json', 'r') as file_json :
                 file = json.load(file_json)
-            
+                
             for object in file :
                 print(object)
                 server_list = server_list + f"\n{object}"
-            
+                
             embed = discord.Embed(
 
-                title = "list of backup",
+                    title = "list of backup",
 
-                description ="```" + server_list + "```"
+                    description ="```" + server_list + "```"
 
-            )
+                )
             await ctx.send(embed = embed)
 
 
-
+                        
                     
+
                 
 
-            
-
-            
+                
