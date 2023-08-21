@@ -1,5 +1,5 @@
 <h1>Discord Shop Manager </h1>
-<h2>Developer : @legenduser </h2>
+<h2>Developer : <a href = "https://discord.com/users/709428112739401860">@legenduser</a> </h2>
 <h2><a href = "https://discord.gg/antitermbot" target = "_blank"> support </a></h2>
 
 <h2>Setup 💻</h2>
