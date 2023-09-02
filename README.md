@@ -4,7 +4,7 @@
 
 <h2>Setup 💻</h2>
 <ul>
-    <li>discord.py version : <b>1.7.2</b></li>
+    <li>discord.py version : <b>2.3</b></li>
     <li>check your intent is actived in your bot like that</li>
     <img src="https://media.discordapp.net/attachments/1135971296774193223/1141833369999646873/image.png?width=1440&height=533" >
 
