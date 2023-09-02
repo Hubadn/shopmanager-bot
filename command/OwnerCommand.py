@@ -23,7 +23,7 @@ class owner(commands.Cog):
                 with open('database/buyer-owner.json', 'w') as f :
                     json.dump(file, f, indent= 2)
 
-                await ctx.send(f"{user.name} a été ajouter a la list des owner")
+                await ctx.send(f"{user.name} be added to owner list")
             elif fonction == "list" :
                 ownerlist = ""
                 
@@ -53,7 +53,7 @@ class owner(commands.Cog):
                 with open('database/buyer-owner.json', 'w') as f :
                     json.dump(file, f, indent= 2)
                 
-                await ctx.send(f"{user.name} n'est plus owner")
+                await ctx.send(f"{user.name} be remove form owner list")
                 
             else :
 
@@ -65,4 +65,4 @@ class owner(commands.Cog):
                 await ctx.send(embed= embed)
                 return
         elif not Check.owner(str(ctx.message.author.id)) == True:
-            await ctx.send("Tu n'est pas owner tu ne peux pas utilse cette command")
+            await ctx.send("you are not authorized to use this command")
