@@ -1,9 +1,7 @@
 {
-    "license " : "",
-    "id" : "",
-    "owner" : [
-        "a",
-        "b"
-    ]
+  "license ": "",
   "owner": {
+    "superowner": "",
+    "list": []
+  }
 }
