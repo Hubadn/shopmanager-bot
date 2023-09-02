@@ -1,8 +1,11 @@
-import discord, tools.data 
+import discord
+from discord import app_commands
 from discord.ext import commands
 from tools.data import *
-def setup(client):
-    client.add_cog(backup(client))
+
+
+async def setup(client):
+    await client.add_cog(backup(client))
 
 
 
@@ -92,12 +95,17 @@ class backup(commands.Cog):
                 list_channel = []
                 list_role= []
                 for channel in channels :
-                    await channel.delete()
+                    try :
+                        await channel.delete()
+                    except :
+                        pass
                 for role in roles :
-                    await role.delete()
+                    try :
+                         await role.delete()
+                    except :
+                         pass
                 with open('database/backup.json', 'r') as file_json:
                     file = json.load(file_json)    
-                
                 for channel_text in file[name]["channel_without_category_texte"] : 
 
                     await ctx.guild.create_text_channel(channel_text)
@@ -111,8 +119,9 @@ class backup(commands.Cog):
                     category_id = await ctx.guild.create_category(category_name)
 
                     for channel_category in file[name]["categories"][category_name]["text"] :
-                        
-                            await ctx.guild.create_text_channel(channel_category, category=category_id)
+                          
+                        await ctx.guild.create_text_channel(channel_category, category=category_id)
+
                     for channel_category in file[name]["categories"][category_name]["voice"] :
                         
                             await ctx.guild.create_voice_channel(channel_category, category=category_id)        
