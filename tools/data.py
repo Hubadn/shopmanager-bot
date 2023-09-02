@@ -27,16 +27,16 @@ class postdata:
         file[name] = value
 
         with open(f'{chemin}/{filename}.json', 'w') as f:
-            json.dump(file, f)
+            json.dump(file, f, indent= 2)
     def list(chemin : str, filename : str, name : str  = None, value: str  = None) :
         with open(f'{chemin}/{filename}.json', 'r') as f:
             file =  json.load(f)
         file[name].append(value)
         with open(f'{chemin}/{filename}.json', 'w') as f:
-            json.dump(file, f)
+            json.dump(file, f, indent= 2)
     def tableau(chemin : str, filename : str, name_list : str  = None, name : str = None, value: str  = None):
         with open(f'{chemin}/{filename}.json', 'r') as f:
             file =  json.load(f)
         file[name_list][name] = value    
         with open(f'{chemin}/{filename}.json', 'w') as f:
-                json.dump(file, f)
+                json.dump(file, f, indent= 2)

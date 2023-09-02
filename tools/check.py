@@ -14,8 +14,11 @@ class Check:
     def owner(id: str):
         with open('database/buyer-owner.json', 'r') as f:
             owner_file = json.load(f)
-        for ownerid in owner_file['owner']:
-            if ownerid == str(id):
-                return True 
-        
+        if id == owner_file['owner']['superowner']:
+            return True
+        else :
+            for ownerid in owner_file['owner']['list']:
+                if ownerid == str(id):
+                    return True 
+                
             
