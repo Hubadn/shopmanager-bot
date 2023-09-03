@@ -32,8 +32,8 @@ class FeedbackModal(discord.ui.Modal, title="Send Vouch"):
         style=discord.TextStyle.long,
         label="vouch content",
         required=True,
-        max_length=500,
-        placeholder="format : <product> <price> <quantity>"
+        max_length=100,
+        placeholder="format : <product> <quantity> <price>"
     )
 
     async def on_submit(self, interaction: discord.Interaction):

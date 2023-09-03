@@ -34,7 +34,6 @@ class setvouchlogs(commands.Cog):
     @app_commands.command(name = "setvouchlog", description="setup vouch log channel")
     async def setvouchlog(self, interaction: discord.Interaction, channel: discord.TextChannel):
         if Check.owner(str(interaction.user.id)) == True :
-            
             with open('database/logs.json', 'r') as f :
                 file = json.load(f)
             

@@ -10,8 +10,11 @@ from tools.check import *
 async def setup(client):
     await client.add_cog(payement(client))
 
-
-
+class SimpleView(discord.ui.View):
+    @discord.ui.button(label="copy", 
+                       style=discord.ButtonStyle.success)
+    async def hello(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.user.send_message()
 class payement(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -38,12 +41,11 @@ class payement(commands.Cog):
 
             message_ppl = await ctx.send(embed=embed)
             await message_ppl.add_reaction("📱")
-            while True:
+            while True: 
                         try:
                             reaction, user = await self.client.wait_for("reaction_add")
                             if str(reaction.emoji) == "📱":
                                 if check(id = reaction.message.id, message =  message_ppl.id) is True :
-                                    print("a")
                                     await user.send(f"{importdata.tableau(chemin='database/', filename='payement', name_list='paypal', name='link' )}")
                                     await user.send(f"{importdata.tableau(chemin='database/', filename='payement', name_list='paypal', name='email' )}")
                                 else : 
