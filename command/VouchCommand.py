@@ -66,7 +66,7 @@ class FeedbackModal(discord.ui.Modal, title="Send Vouch"):
             file = json.load(f)
         
         file[f"vouch : {datetime.datetime.utcnow()}"] = {
-            "VouchIdUser" : self.id_vouch.value,
+            "VouchIdUser" :int(self.id_vouch.value),
             "VouchType" : self.type_vouch.value,
             "VouchUser" : self.user_vouch.value,
             "VouchValue" : self.message_vouch.value
