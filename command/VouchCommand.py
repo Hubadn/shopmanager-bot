@@ -1,4 +1,4 @@
-import discord
+import discord, datetime
 
 from discord import app_commands
 from discord.ext import commands
@@ -21,6 +21,12 @@ class FeedbackModal(discord.ui.Modal, title="Send Vouch"):
         required= True,
         placeholder= "exemple : legenduser"
 
+    )
+    id_vouch = discord.ui.TextInput(
+        style= discord.TextStyle.short,
+        label= "seller id",
+        required= True,
+        placeholder= "seller id of discord account"
     ) 
     message_vouch = discord.ui.TextInput(
         style=discord.TextStyle.long,
@@ -56,9 +62,21 @@ class FeedbackModal(discord.ui.Modal, title="Send Vouch"):
 
         await interaction.response.send_message(f"Thank you, {self.user.name}", ephemeral=True)
 
-    async def on_error(self, interaction: discord.Interaction, error : Exception):
+        with open('database/vouch.json','r') as f:
+            file = json.load(f)
         
-        print("error")
+        file[f"vouch : {datetime.datetime.utcnow()}"] = {
+            "VouchIdUser" : self.id_vouch.value,
+            "VouchType" : self.type_vouch.value,
+            "VouchUser" : self.user_vouch.value,
+            "VouchValue" : self.message_vouch.value
+        }
+
+        with open('database/vouch.json','w') as f:
+            json.dump(file, f , indent = 2)
+
+    async def on_error(self, interaction: discord.Interaction, error : Exception) :
+        await interaction.response.send_message(f"vouch invalide or latence error", ephemeral=True)
 class VouchCommand(commands.Cog):
     
     def __init__(self, client):
