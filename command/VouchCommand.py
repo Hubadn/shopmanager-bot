@@ -50,7 +50,7 @@ class FeedbackModal(discord.ui.Modal, title="Send Vouch"):
         if self.type_vouch.value == "bad" :
             embed.color = discord.Color.red()
         
-        embed.set_author(name=self.user.name, url= "")
+        embed.set_author(name=self.user.name, url= f"https://discord.com/users/{self.user.id}")
 
         await channel.send(embed = embed)
 
