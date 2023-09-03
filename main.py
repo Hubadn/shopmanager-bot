@@ -34,9 +34,14 @@ async def reload(ctx):
     await unload.command()
     await load.command()
 
+@client.event
+async def on_ready():
+    await client.tree.sync()
 
+    
 async def main():
     await load.command()
     await client.start(importdata.simple("database", "config")["token"])
+
 
 asyncio.run(main())

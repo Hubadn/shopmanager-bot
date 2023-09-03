@@ -1,1 +1,30 @@
-{}
+{
+  "toto": {
+    "Server-Name": "Serveur de legend",
+    "channel_without_category_texte": [
+      "az"
+    ],
+    "channel_without_category_voc": [],
+    "categories": {},
+    "role": {
+      "role": [
+        "@everyone",
+        "manager-bot"
+      ]
+    }
+  },
+  "tota": {
+    "Server-Name": "Serveur de legend",
+    "channel_without_category_texte": [
+      "az"
+    ],
+    "channel_without_category_voc": [],
+    "categories": {},
+    "role": {
+      "role": [
+        "@everyone",
+        "manager-bot"
+      ]
+    }
+  }
+}

@@ -1,7 +1,11 @@
 import discord
+
+from discord import app_commands
 from discord.ext import commands
-import tools.data
+from discord import ui
 from tools.data import *
+from tools.check import *
+
 
 async def setup(client):
     await client.add_cog(payement(client))
@@ -12,7 +16,7 @@ class payement(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.Cog.listener()
+    @commands.command()
     async def payement(self,ctx, select : str):
         
         def check(id, message):

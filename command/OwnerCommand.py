@@ -1,6 +1,10 @@
-import discord, json
+import discord
+
+from discord import app_commands
 from discord.ext import commands
-from  tools.check import *
+from discord import ui
+from tools.data import *
+from tools.check import *
 
 async def setup(client):
     await client.add_cog(owner(client))
