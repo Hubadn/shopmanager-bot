@@ -20,6 +20,8 @@ class load :
             if filename.endswith('.py'):
                 await client.load_extension(f'command.{chemin}.{filename[:-3]}')
                 print("[" + Fore.GREEN +" + "+ Fore.WHITE + f"] : {filename[:-3]} loaded")
+            if filename == "__pycache__" :
+                pass
             else :
                 print("[" + Fore.RED +" - "+ Fore.WHITE + f"] : {filename[:-3]} is not a .py file")
 class unload :
