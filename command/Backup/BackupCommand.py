@@ -185,10 +185,10 @@ class backup(commands.Cog):
                     with open('database/backup.json','w') as fichier:
                         json.dump(file, fichier, indent=2)
                     
-                    await interaction.response.send_message(f"backup successfuly deleted {name}")
+                    await interaction.response.send_message(f"backup successfuly deleted {name}", ephemeral= True)
                 except :
                     print("a")
-                    await interaction.response.send_message(f"backup : {name} is not found")
+                    await interaction.response.send_message(f"backup : {name} is not found", ephemeral= True)
                     
         else :
-            await interaction.response.send_message("you are not authorized to use this command")
+            await interaction.response.send_message("you are not authorized to use this command", ephemeral= True)
