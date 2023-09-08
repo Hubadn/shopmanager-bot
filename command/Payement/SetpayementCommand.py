@@ -66,6 +66,6 @@ class setpayement(commands.Cog):
 
                 await interaction.response.send_message(embed=embed, ephemeral=True)
         else : 
-            await interaction.response.send_message("you are not authorized to use this command")
+            await interaction.response.send_message("you are not authorized to use this command", ephemeral= True)
 
 
