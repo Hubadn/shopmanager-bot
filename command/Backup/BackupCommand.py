@@ -178,7 +178,6 @@ class backup(commands.Cog):
             elif type.value == "server" and action.value == "delete" :
                 with open('database/backup.json', 'r') as file_json :
                     file = json.load(file_json)
-                print("a")
                 try :    
                     del file[name]
 
@@ -187,7 +186,6 @@ class backup(commands.Cog):
                     
                     await interaction.response.send_message(f"backup successfuly deleted {name}", ephemeral= True)
                 except :
-                    print("a")
                     await interaction.response.send_message(f"backup : {name} is not found", ephemeral= True)
                     
         else :
