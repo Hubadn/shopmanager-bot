@@ -1,4 +1,4 @@
-import discord
+import discord, enum
 
 from discord import app_commands
 from discord.ext import commands
@@ -6,29 +6,38 @@ from discord import ui
 from tools.data import *
 from tools.check import *
 
+class Type(enum.Enum):
 
+    server = "server"
+    emoji = "emoji"
+
+class Action(enum.Enum):
+
+    create = "create"
+    delete = "delete"
+    load = "load"
+    list = "list"
 
 async def setup(client):
     await client.add_cog(backup(client))
-
 
 
 class backup(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
-    async def backup(self,ctx, type : str = None , action: str = None  , name: str = None ):
-        if Check.owner(str(ctx.message.author.id)) == True  :
-            if type == "server" and action == "create" :
-                channels = ctx.guild.channels
-                categories = ctx.guild.categories
+    @app_commands.command(name="backup", description="backup command")
+    async def backup(self,interaction: discord.Interaction, type : Type , action: Action  , name: str = None ):
+        if Check.owner(str(interaction.user.id)) == True  :
+            if type.value == "server" and action.value == "create" :
+                channels = interaction.guild.channels
+                categories = interaction.guild.categories
 
                 with open('database/backup.json', 'r') as file_json:
                     file = json.load(file_json)
                 
                 file[name] = {}
-                file[name]["Server-Name"] = ctx.guild.name
+                file[name]["Server-Name"] = interaction.guild.name
                 file[name]["channel_without_category_texte"] = []
                 file[name]["channel_without_category_voc"] = []
                 file[name]["categories"] = {}
@@ -85,7 +94,7 @@ class backup(commands.Cog):
                 with open('database/backup.json', 'r') as file_json:
                     file = json.load(file_json)
 
-                    for role in ctx.guild.roles :
+                    for role in interaction.guild.roles :
                     
                         file[name]["role"]["role"].append(role.name)
 
@@ -93,8 +102,8 @@ class backup(commands.Cog):
                     json.dump(file, file_json, indent= 2)       
 
 
-                await ctx.send("backup server create with succes")
-            elif type == "server" and action == "load": 
+                await interaction.response.send_message("backup server create with succes")
+            elif type.value == "server" and action.value == "load": 
                     with open('database/backup.json', 'r') as file_json:
                         file = json.load(file_json)
 
@@ -102,11 +111,11 @@ class backup(commands.Cog):
                         file[name]
                         nofound = False
                     except : 
-                        await ctx.send("backup no found")
+                        await interaction.response.send_message("backup no found")
                         nofound =  True
                     
-                    channels = ctx.guild.channels
-                    roles = ctx.guild.roles
+                    channels = interaction.guild.channels
+                    roles = interaction.guild.roles
 
                     if nofound is True :
                         return
@@ -123,30 +132,30 @@ class backup(commands.Cog):
                                 pass  
                         for channel_text in file[name]["channel_without_category_texte"] : 
 
-                            await ctx.guild.create_text_channel(channel_text)
+                            await interaction.guild.create_text_channel(channel_text)
 
                         for channel_voice in file[name]["channel_without_category_voc"]:
 
-                            await ctx.guild.create_voice_channel(channel_voice)
+                            await interaction.guild.create_voice_channel(channel_voice)
 
                         for category_name in file[name]["categories"] :
 
-                            category_id = await ctx.guild.create_category(category_name)
+                            category_id = await interaction.guild.create_category(category_name)
 
                             for channel_category in file[name]["categories"][category_name]["text"] :
                                 
-                                await ctx.guild.create_text_channel(channel_category, category=category_id)
+                                await interaction.guild.create_text_channel(channel_category, category=category_id)
 
                             for channel_category in file[name]["categories"][category_name]["voice"] :
                                 
-                                    await ctx.guild.create_voice_channel(channel_category, category=category_id)        
+                                    await interaction.guild.create_voice_channel(channel_category, category=category_id)        
                         for role in file[name]["role"]["role"] :
 
-                                    await ctx.guild.create_role(name= role)
+                                    await interaction.guild.create_role(name= role)
                         
-                        await ctx.author.send("backup load with success !")
+                        await interaction.user.send("backup load with success !")
 
-            elif type == "server" and action == "list" :
+            elif type.value == "server" and action.value == "list" :
 
                 server_list = ""
 
@@ -164,6 +173,16 @@ class backup(commands.Cog):
                         description ="```" + server_list + "```"
 
                     )
-                await ctx.send(embed = embed)
+                await interaction.response.send_message(embed = embed)
+            
+            elif type.value and action.value == "delete" :
+
+                with open('database/backup.json', 'r') as file_json :
+                    file = json.load(file_json)
+                    
+                del file[name]
+
+                with open('database/backup.json','w') as fichier:
+                    json.dump(file, fichier, indent=2)
         else :
-            await ctx.send("you are not authorized to use this command")
+            await interaction.response.send_message("you are not authorized to use this command")
