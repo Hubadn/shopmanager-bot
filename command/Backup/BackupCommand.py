@@ -175,14 +175,20 @@ class backup(commands.Cog):
                     )
                 await interaction.response.send_message(embed = embed)
             
-            elif type.value and action.value == "delete" :
-
+            elif type.value == "server" and action.value == "delete" :
                 with open('database/backup.json', 'r') as file_json :
                     file = json.load(file_json)
-                    
-                del file[name]
+                print("a")
+                try :    
+                    del file[name]
 
-                with open('database/backup.json','w') as fichier:
-                    json.dump(file, fichier, indent=2)
+                    with open('database/backup.json','w') as fichier:
+                        json.dump(file, fichier, indent=2)
+                    
+                    await interaction.response.send_message(f"backup successfuly deleted {name}")
+                except :
+                    print("a")
+                    await interaction.response.send_message(f"backup : {name} is not found")
+                    
         else :
             await interaction.response.send_message("you are not authorized to use this command")
