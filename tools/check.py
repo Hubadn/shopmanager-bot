@@ -20,5 +20,12 @@ class Check:
             for ownerid in owner_file['owner']['list']:
                 if ownerid == str(id):
                     return True 
+    def superowner(id: str):
+        with open('database/buyer-owner.json', 'r') as f:
+            owner_file = json.load(f)
+        if id == owner_file['owner']['superowner']:
+            return True
+        else : 
+            return False
                 
             

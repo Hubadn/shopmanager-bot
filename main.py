@@ -12,6 +12,7 @@ init()
 intents = discord.Intents.all()
 intents.members = True
 client = commands.Bot(command_prefix=";",help_command= None,intents=intents)
+client2 = commands.Bot(command_prefix="+",help_command= None,intents=intents)
 
 class load : 
     async def command():
@@ -41,7 +42,6 @@ async def on_ready():
     
 async def main():
     await load.command()
-    await client.start(importdata.simple("database", "config")["token"])
-
+    await client.start(importdata.simple("database", "config","token"))
 
 asyncio.run(main())
