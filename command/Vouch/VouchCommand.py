@@ -16,8 +16,8 @@ class VouchCommandPhone(commands.Cog):
 
 
 
-    @app_commands.command(name= "vouchcommandphone", description= "vouch command for phone",)
-    async def vouchcommand(self, interaction: discord.Interaction, user: discord.User, type : str  = None, product : str = None,  quantity : str = None , price : str = None):
+    @app_commands.command(name= "vouch", description= "vouch command",)
+    async def vouch(self, interaction: discord.Interaction, user: discord.User, type : str  = None, product : str = None,  quantity : str = None , price : str = None):
             with open('database/vouch.json','r') as f:
                 file = json.load(f)
             
