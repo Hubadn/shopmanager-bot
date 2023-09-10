@@ -21,7 +21,7 @@ class load :
                 await client.load_extension(f'command.{chemin}.{filename[:-3]}')
                 print("[" + Fore.GREEN +" + "+ Fore.WHITE + f"] : {filename[:-3]} loaded")
             if filename == "__pycache__" :
-                pass
+                break
             else :
                 print("[" + Fore.RED +" - "+ Fore.WHITE + f"] : {filename[:-3]} is not a .py file")
 class unload :
@@ -34,8 +34,16 @@ class unload :
 @client.command()
 async def reload(ctx):
     await ctx.send("Les command on été reload")
-    await unload.command()
-    await load.command()
+    await unload.command("Vouch")
+    await unload.command("Payement")
+    await unload.command("Owner")
+    await unload.command("Backup")
+    await unload.command("Logs")
+    await load.command("Vouch")
+    await load.command("Payement")
+    await load.command("Owner")
+    await load.command("Backup")
+    await load.command("Logs")
 
 @client.event
 async def on_ready():
@@ -47,6 +55,7 @@ async def main():
     await load.command("Payement")
     await load.command("Owner")
     await load.command("Backup")
+    await load.command("Logs")
     await client.start(importdata.simple("database", "config","token"))
 
 asyncio.run(main())
