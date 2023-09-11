@@ -20,10 +20,13 @@ class load :
             if filename.endswith('.py'):
                 await client.load_extension(f'command.{chemin}.{filename[:-3]}')
                 print("[" + Fore.GREEN +" + "+ Fore.WHITE + f"] : {filename[:-3]} loaded")
-            if filename == "__pycache__" :
-                break
             else :
-                print("[" + Fore.RED +" - "+ Fore.WHITE + f"] : {filename[:-3]} is not a .py file")
+                if filename == "__pycache__" :
+                    return
+                if filename.endswith(".txt"):
+                    return
+                else :
+                    print("[" + Fore.RED +" - "+ Fore.WHITE + f"] : {filename[:-3]} is not a .py file")
 class unload :
     async def command(chemin : str):
         commandnb = 0
@@ -39,11 +42,13 @@ async def reload(ctx):
     await unload.command("Owner")
     await unload.command("Backup")
     await unload.command("Logs")
+    await unload.command("Tools")
     await load.command("Vouch")
     await load.command("Payement")
     await load.command("Owner")
     await load.command("Backup")
     await load.command("Logs")
+    await load.command("Tools")
 
 @client.event
 async def on_ready():
@@ -56,6 +61,7 @@ async def main():
     await load.command("Owner")
     await load.command("Backup")
     await load.command("Logs")
+    await load.command("Tools")
     await client.start(importdata.simple("database", "config","token"))
 
 asyncio.run(main())
