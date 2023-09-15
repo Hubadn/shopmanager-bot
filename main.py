@@ -42,13 +42,13 @@ async def reload(ctx):
     await unload.command("Owner")
     await unload.command("Backup")
     await unload.command("Logs")
-    await unload.command("Tools")
+    await unload.command("Token")
     await load.command("Vouch")
     await load.command("Payement")
     await load.command("Owner")
     await load.command("Backup")
     await load.command("Logs")
-    await load.command("Tools")
+    await load.command("Token")
 
 @client.event
 async def on_ready():
@@ -61,7 +61,7 @@ async def main():
     await load.command("Owner")
     await load.command("Backup")
     await load.command("Logs")
-    await load.command("Tools")
+    await load.command("Token")
     await client.start(importdata.simple("database", "config","token"))
 
 asyncio.run(main())
