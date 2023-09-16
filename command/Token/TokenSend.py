@@ -27,14 +27,16 @@ class tokensend(commands.Cog):
 
         if Check.owner(str(interaction.user.id)) == True :
             value = ""
+            number = number - 1
+            
             if type.value == "token":
 
                 with open('database/token.json', 'r') as f:
                     file = json.load(f)
                 if number <= len(file["token"][type.value]) :
                     for number_enum, token in enumerate(file["token"][type.value]):
-
-                        if number_enum <= number :
+                        
+                        if number_enum <= number  :
 
                             value += f"\n {token}"
 
