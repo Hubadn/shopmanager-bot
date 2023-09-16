@@ -49,5 +49,8 @@ class VouchCommandPhone(commands.Cog):
                 embed.color = discord.Color.red()
             
             embed.set_author(name=user.name, url= f"https://discord.com/users/{user.id}")
-            await channel.send(embed = embed)
+            try : 
+                await channel.send(embed = embed)
+            except :
+                pass
             await interaction.response.send_message(f"Thank you, {user.name}", ephemeral=True)          
