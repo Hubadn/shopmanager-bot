@@ -17,33 +17,30 @@ class profile(commands.Cog):
     async def profile(self, interaction: discord.Interaction, user : discord.User  ):
             good = 0
             bad =  0
-            good_text : str = ""
-            bad_text : str = ""
+            vouchs = ""
 
             with open('database/vouch.json', 'r') as f:
                 file = json.load(f)
-            for vouch in file :
-                if  file[vouch]["VouchType"]  == "good" and file[vouch]["VouchIdUser"] == user.id :
+            for num , vouch in enumerate(file[f"vouch : {user.id}"]["content"]):
+                if num <= 4 :
+                    vouchs  += (f"\n* {vouch}")
+                else : 
+                    break 
+            for type in file[f"vouch : {user.id}"]["type"]:
+                 
+                if type == "good" :
                     good += 1
-                    good_text += f"{file[vouch]['VouchValue']},"
-                elif file[vouch]["VouchType"] == "bad" and file[vouch]["VouchIdUser"] == user.id:
-                    bad +=1
-                    bad_text += f",{file[vouch]['VouchValue']}"
+                elif type == "bad" :
+                    bad += 1
             
-            if bad_text  == "" :
-                bad_text = "No vouch"
-            if good_text == "" :
-                good_text = "No vouch"
-
             embed = discord.Embed(
                 title= f"Vouch {user.name}",
-                description = f"Possitive : **{good}**\n\n> {good_text}\n\nBad : **{bad}**\n\n> {bad_text}"
+                description = f"Possitive : **{good}**\nNegative : **{bad}**\n\n **5 last vouch** {vouchs}"
             )
             embed.set_thumbnail(url= user.avatar._url)
             embed.set_author(name= interaction.user.name, icon_url= interaction.user.avatar._url )
 
             await interaction.response.send_message(embed = embed, ephemeral= False)
-
 
             
         
