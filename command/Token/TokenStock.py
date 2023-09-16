@@ -32,9 +32,9 @@ def get_number_of_token_boost():
 
     return token_1, token_3
 async def setup(client):
-    await client.add_cog(tokenjoineur(client))
+    await client.add_cog(tokenstock(client))
 
-class tokenjoineur(commands.Cog):
+class tokenstock(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -53,4 +53,4 @@ class tokenjoineur(commands.Cog):
             )
             await interaction.response.send_message(embed= embed)
         else : 
-            await interaction.response.send("you are not authorized to use this command", ephemeral= True)
+            await interaction.response.send_message("you are not authorized to use this command", ephemeral= True)
